@@ -4,6 +4,7 @@ import { PORT } from './config.js'
 import multer from 'multer';
 import { bucket } from './firebaseConfig.js'; // Asegúrate de importar bucket desde donde lo hayas definido
 
+
 const upload = multer({
   storage: multer.memoryStorage(),
   /*
@@ -13,6 +14,11 @@ const upload = multer({
   */
 });
 
+/*
+const upload = multer({
+  dest: 'uploads/'
+});
+*/
 const app = express()
 
 app.use(express.json());
@@ -23,6 +29,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
     res.status(400).send('No file uploaded.');
     return;
   }
+  console.log(req.file);
 
   const fileName = `${Date.now()}-${req.file.originalname}`;
   const fileUpload = bucket.file(fileName);
