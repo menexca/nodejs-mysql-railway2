@@ -6,9 +6,11 @@ import { bucket } from './firebaseConfig.js'; // Asegúrate de importar bucket d
 
 const upload = multer({
   storage: multer.memoryStorage(),
+  /*
   limits: {
     fileSize: 5 * 1024 * 1024, // por ejemplo, limitamos el tamaño del archivo a 5MB
   },
+  */
 });
 
 const app = express()
